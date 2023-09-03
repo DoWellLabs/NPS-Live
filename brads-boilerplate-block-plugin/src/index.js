@@ -6,9 +6,9 @@ wp.blocks.registerBlockType("makeupnamespace/make-up-block-name", {
   icon: "welcome-learn-more",
   category: "common",
   attributes: {
-    state: { scaleOrientaion: '', 
+    state: { scaleOrientation: '', 
              row:true,
-             emoji:false,
+             emoji:true,
              btnbg:'',
              btncolr:'',
     color: {btnColor:'',btnBgcolor:'', fntColor:'', sclColor:'',confgrFontColor:''},

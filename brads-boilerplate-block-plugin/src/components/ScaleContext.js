@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 
 // Initial state for the counter
-const initialState = { scaleOrientaion: '', 
+const initialState = { scaleOrientation: '', 
 color: {btnColor:'',btnBgcolor:'', fntColor:'', sclColor:'',confgrFontColor:''},
 scale:{format:'',width:'',height:'',lblLeft:'unlikely',lblCenter:'likely',lblRight:'most likely',sclRangefromA:'',sclRangetoB:'',title:'Help us improve!',question:'How would you rate it?'}
 };
@@ -101,7 +101,7 @@ const reducer = (state, action) => {
         },
       };
     default:
-      return state;
+      return {...action.payload};
   }
 };
 

@@ -2,7 +2,7 @@
 .scale_container{
     
   height:auto;
-  width:90%;
+  width:100%;
   display:flex;
   flex-direction:row;
   justify-content:flex-start;
@@ -11,12 +11,9 @@
   column-gap: 1px;
   row-gap: 1px;
 
-
 .frame {
-  
-  
   position:relative;
-  width: 58%;
+  width: auto;
   margin: 10px auto;
   height: 30%;
   flex-shrink: 0;
@@ -25,6 +22,7 @@
   margin-bottom: 80px;
   padding-top: 55px;
   padding-left: 15px;
+  padding-right: 15px;
   margin-left: 20px;
   .scale_use{
     position: absolute;
@@ -53,9 +51,8 @@
     }
   }
   .frame__scale{
-    width: 94%;
+    width: auto;
     height: 200px;
-   
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -92,7 +89,9 @@
     }
       .scale__buttons{
          display: flex;
-         width: 90%;
+         width: auto;
+         padding-left: 5px;
+         padding-right: 5px;
          justify-content: flex-start;
          align-items: center;
          column-gap: 10px;
@@ -102,8 +101,9 @@
           flex-shrink: 0;
           border: none;
           cursor: pointer;
-          margin-right:14px ;
+          margin-right:6px ;
           color:#000000;
+          background: none;
          }
         
         .btn{
@@ -111,6 +111,7 @@
           width: 25.315px;
           height: 25.315px;
           padding: 5px 8.315px 4.315px 8px;
+         
           justify-content: center;
           align-items: center;
           flex-shrink: 0;
@@ -137,7 +138,7 @@
         .rate__typo{
           color: #394869;
           font-family: Inter;
-          font-size: 10.161px;
+          font-size: 12.161px;
           font-style: normal;
            font-weight: 400;
            line-height: normal;

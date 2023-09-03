@@ -1,9 +1,9 @@
 .boilerplate-update-front{
-    width: auto;
+    width: 100%;
     height: auto;
     .frame {
         position:relative;
-        width: 36%;
+        width: 350px;
         margin: 10px auto;
         height: 50%;
         flex-shrink: 0;
@@ -42,7 +42,7 @@
           }
         }
         .frame__scale{
-          width: 94%;
+          width: auto;
           height: 200px;
          
           flex-shrink: 0;
@@ -91,8 +91,9 @@
                 flex-shrink: 0;
                 border: none;
                 cursor: pointer;
-                margin-right:14px ;
+                margin-right:6px ;
                 color:#000000;
+                background: none;
                }
               
               .btn{
@@ -126,7 +127,7 @@
               .rate__typo{
                 color: #394869;
                 font-family: Inter;
-                font-size: 10.161px;
+                font-size: 13.161px;
                 font-style: normal;
                  font-weight: 400;
                  line-height: normal;

@@ -8,12 +8,18 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
   //console.log(scaleContent);
   const [setting,setSetting] = useState(true);
   const { state, dispatch } = useContext(ScaleContext);
-  
-  useEffect(()=>{
-    setAttributes({state:{ ...state,
-        row,emoji,btnbg,btncolr
-    }});
-  },[]);
+  const [sideBar,setSideBar]=useState(true);
+  useEffect(() => {
+    dispatch({
+      type: 'DEFAULT',
+      payload:{ ...state,
+        row: row,
+        emoji: emoji,
+        btnbg: btnbg,
+        btncolr: btncolr
+      }
+    });
+  }, []);
   const handleScaleColorChange = (e) => {
     const newColor = e.target.value;
     dispatch({
@@ -102,11 +108,13 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
   };
 
 
- 
+ const hideSetting=()=>{
+         setSideBar(false);
+ }
 
   return (
     <>
-    <div className='sidebar'>
+    {sideBar && <div className='sidebar'>
     <div className='setting_configure'>
     <button className='setting_button' onClick={()=>setSetting(true)} style={{borderBottom: `${setting ? '3px solid #6E62E5':''}`}}>Setting</button>
     <button className='configure_button' onClick={()=>setSetting(false)} style={{borderBottom: `${!setting ? '3px solid #6E62E5':''}`}}>Configurations</button>
@@ -127,12 +135,12 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
       type: 'SET_SCALE_ORIENTATION',
       payload: orientation,
     });
+    
     setAttributes({state:{...state,
-      scaleOrientaion: orientation,
+      scaleOrientation: orientation,
     }});
   }}
-            
-            >
+          >
                 <option value="">options</option>
                 <option value="vertical">Vertical</option>
                 <option value="horizontal">Horizontal</option>
@@ -145,13 +153,18 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
                 <input type="color" id="scale_color--input" name="scale_color--input"
                 
                 onChange={handleScaleColorChange}
+                value={state.color.sclColor || '#FFFFFF'}
                 />
+                
             </div>
+            {console.log(btnbg)}
             <div className='button_color'>
                 <label for="button_color--input">Button Color</label>
                 <input type="color" id="button_color--input" name="button_color--input"
-                onChange={handleButtonColorChange}
+                onChange={handleButtonColorChange} value={state.color.btnColor? state.color.btnColor:`${btnbg==='yellow'?'#FFFF00':btnbg}` }
+                
                 />
+               
             </div>
           </div>
           
@@ -161,6 +174,7 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
                 <input type="color" id="font_color--input" name="font_color--input"
       
                 onChange={handleFontColorChange}
+                value={state.color.fntColor || '#ff0000'}
                 />
             </div>
             <div className='font_style'>
@@ -172,22 +186,24 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
             </div>
           </div>
 
-
+          {console.log(state.scale.format, state.emoji)}
           <div className='sidebar_element_four'>
           <label>Scale Format</label>
             <div className='Scale_format'>
                <div>
                <input type="radio" id="emoji" name="options" value="emoji"
                
-               checked={state.scale.format === 'emoji'}
+               checked={state.scale.format ? state.scale.format === 'emoji' ? true : false : emoji}
                onChange={() => handleScaleFormatChange('emoji')}
                />
+               {console.log('emoji',emoji)}
                 <label for="emoji">Emoji</label>
                 </div>
+               
               <div>
                 <input type="radio" id="number" name="options" value="number"
                 
-                checked={state.scale.format === 'number'}
+                checked={state.scale.format ? state.scale.format === 'number' ? true : false : !state.emoji}
                 onChange={() => handleScaleFormatChange('number')}
                 />
                 <label for="number">Number</label>
@@ -301,10 +317,10 @@ export default function Sidebar({row,emoji,btnbg,btncolr, setAttributes}) {
         ):(<Configuration setAttributes={setAttributes}/>)}
           
        
-       <button className='use_scale'>Use Scale</button>
+       <button onClick={hideSetting} className='use_scale'>Use Scale</button>
         </div>
         
-     </div>
+     </div>}
      <Scale row={row} emoji={emoji} btnbg={btnbg} btncolr={btncolr} />
      </>
 
