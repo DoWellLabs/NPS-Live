@@ -23,12 +23,12 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/templatefront.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************/
 .boilerplate-update-front {
-  width: auto;
+  width: 100%;
   height: auto;
 }
 .boilerplate-update-front .frame {
   position: relative;
-  width: 36%;
+  width: 350px;
   margin: 10px auto;
   height: 50%;
   flex-shrink: 0;
@@ -54,11 +54,9 @@
   border-radius: 20px;
   border-color: rgba(61, 203, 169, 0.13);
   background: rgba(61, 203, 169, 0.13);
-  color: #3DCBA9;
+  color: #3dcba9;
   cursor: pointer;
-  color: #3DCBA9;
-  leading-trim: both;
-  text-edge: cap;
+  color: #3dcba9;
   font-family: FF Nort;
   font-size: 16px;
   font-style: normal;
@@ -66,7 +64,7 @@
   line-height: normal;
 }
 .boilerplate-update-front .frame .frame__scale {
-  width: 94%;
+  width: auto;
   height: 200px;
   flex-shrink: 0;
   display: flex;
@@ -75,12 +73,12 @@
   flex-direction: column;
   row-gap: 20px;
   border-radius: 12px;
-  background: #FDFBF5;
+  background: #fdfbf5;
   margin-top: 5px;
   margin-bottom: 30px;
 }
 .boilerplate-update-front .frame .frame__scale .scale_title {
-  color: #1C2B48;
+  color: #1c2b48;
   text-align: center;
   font-family: Inter;
   font-size: 18.896px;
@@ -105,20 +103,19 @@
 }
 .boilerplate-update-front .frame .frame__scale .scale__buttons {
   display: flex;
-  width: 90%;
   justify-content: flex-start;
   align-items: center;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  flex-shrink: 2;
+  gap: 5px;
 }
 .boilerplate-update-front .frame .frame__scale .scale__buttons .emoji {
   width: 17.919px;
   height: 17.919px;
-  flex-shrink: 0;
   border: none;
   cursor: pointer;
-  margin-right: 14px;
+  margin-right: 6px;
   color: #000000;
+  background: none;
 }
 .boilerplate-update-front .frame .frame__scale .scale__buttons .btn {
   display: flex;
@@ -127,7 +124,6 @@
   padding: 5px 8.315px 4.315px 8px;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
   border-radius: 6.329px;
   background: rgb(142, 216, 142);
   cursor: pointer;
@@ -150,7 +146,7 @@
 .boilerplate-update-front .frame .frame__scale .scale_rate .rate__typo {
   color: #394869;
   font-family: Inter;
-  font-size: 10.161px;
+  font-size: 13.161px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
