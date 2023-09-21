@@ -9,7 +9,7 @@
 
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class BradsBoilerplate {
+class BradsBoilerplatess {
   function __construct() {
     add_action('init', array($this, 'onInit'));
   }
@@ -43,4 +43,4 @@ class BradsBoilerplate {
   }
 }
 
-$bradsBoilerplate = new BradsBoilerplate();
+$bradsBoilerplatess = new BradsBoilerplatess();
