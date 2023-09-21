@@ -676,14 +676,15 @@ export default function Scalefrontend({ state_back_end }) {
   return (
     <Resizable
       defaultSize={{
-        width: 450,
-        height: 260,
+        width: `${state.scaleOrientation === "vertical" ? "380px" : "450px"}`,
+        height: `${state.scaleOrientation === "vertical" ? "520px" : "230px"}`,
       }}
       className={`frame`}
       id="frame"
       style={{
         background: `${row ? "#E8D6F1" : "#F2D5DD"}`,
         width: `${state.scaleOrientation === "vertical" ? "350px" : "450px"}`,
+
         top: position.top,
         left: position.left,
       }}
@@ -692,9 +693,9 @@ export default function Scalefrontend({ state_back_end }) {
       <div
         className="frame__scale"
         style={{
-          height: `${state.scaleOrientation === "vertical" ? "auto" : "auto"}`,
+          height: `${state.scaleOrientation === "vertical" ? "90%" : "auto"}`,
           padding: `${state.scaleOrientation === "vertical" ? "15px" : "10px"}`,
-          width: `${state.scaleOrientation === "vertical" ? "300px" : "400px"}`,
+          width: `${state.scaleOrientation === "vertical" ? "80%" : "85%"}`,
           background: `${state.color.sclColor ? state.color.sclColor : ""}`,
         }}
       >
