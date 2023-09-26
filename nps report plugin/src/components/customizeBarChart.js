@@ -1,16 +1,16 @@
 import React from "react";
-import PieChart from "./PieChart";
 import "./templatestyle.scss";
-function customizePieChart() {
+import BarChart from "./BarChart";
+function customizeBarchart() {
   return (
     <div className="framereport">
       <div className="framereport__scale">
-        <div className="report__centerpie">
-          <PieChart />
+        <div className="report__centerbar">
+          <BarChart />
         </div>
       </div>
     </div>
   );
 }
 
-export default customizePieChart;
+export default customizeBarchart;

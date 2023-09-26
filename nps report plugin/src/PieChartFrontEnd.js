@@ -1,7 +1,7 @@
 import { React, useContext, useState } from "react";
 import { Bar, Pie } from "react-chartjs-2";
-import Chart from "chart.js/auto";
 import "../src/components/templatestyle.scss";
+import Chart from "chart.js/auto";
 
 export default function PieChartFrontEnd({ state_back_end }) {
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -56,24 +56,22 @@ export default function PieChartFrontEnd({ state_back_end }) {
   };
   return (
     <div
-      // onMouseDown={dragMouseDown}
+      onMouseDown={dragMouseDown}
+      className="framefrontend"
       style={{
-        width: 450,
+        width: 250,
         textAlign: "center",
+        top: position.top,
+        left: position.left,
+        cursor: "move",
       }}
     >
-      <div
-        onMouseDown={dragMouseDown}
-        className="framefrontend"
-        style={{ top: position.top, left: position.left, cursor: "move" }}
-      >
-        <div className="frame__scalefrontend">
-          {bar ? (
-            <Pie data={data} width={30} height={30} />
-          ) : (
-            <Bar data={data} width={30} height={30} />
-          )}
-        </div>
+      <div className="frame__scalefrontend">
+        {bar ? (
+          <Bar data={data} width={30} height={30} />
+        ) : (
+          <Pie data={data} width={30} height={30} />
+        )}
       </div>
     </div>
   );

@@ -1,21 +1,21 @@
-import { useState, React } from "react";
+import { useState, useContext, React } from "react";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
+import { ScaleContext } from "./ScaleContext";
 
 export default function NumberScale({
-  row,
   bar,
-  btnbg,
-  btncolr,
+  pie,
   customize,
   setCustomize,
   setScale,
   setting,
+  setAttributes,
   setSetting,
   setIsTitleActive,
 }) {
   const [isHovered, setIsHovered] = useState(false);
-
+  const { state, dispatch } = useContext(ScaleContext);
   // Event handlers for hover
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -26,7 +26,7 @@ export default function NumberScale({
   };
   const handleCustomize = () => {
     !customize && setCustomize(true);
-    setScale({ row, bar, btnbg, btncolr });
+    setScale({ bar });
     setIsTitleActive(false);
   };
 
@@ -39,23 +39,18 @@ export default function NumberScale({
   // };
   // const buttonStylecond=!emoji?buttonStyle:{transform:row ? '' : `rotate(270deg)`};
   return (
-    <>
+    <div className={`framereport `} style={{ background: `${"#E8D6F1"}` }}>
       <div
-        className={`frame `}
-        style={{ background: `${row ? "#E8D6F1" : "#F2D5DD"}` }}
+        className={`framereport__scale ${isHovered ? "hovered" : ""}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
+        {/* <label className='scale_typo'>How would you rate it?</label> */}
         <div
-          className={`frame__scale ${isHovered ? "hovered" : ""}`}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={{ transform: `${row ? "" : "rotate(90deg)"}` }}
+          className="scale__buttons"
+          style={{ paddingLeft: bar ? "130px" : "" }}
         >
-          {/* <label className='scale_typo'>How would you rate it?</label> */}
-          <div
-            className="scale__buttons"
-            style={{ paddingLeft: bar ? "130px" : "" }}
-          >
-            {/*
+          {/*
             <button className={`${emoji ? 'emoji':'btn'}`} style={buttonStylecond}>{emoji ? <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 22 22" fill="none">
   <g clip-path="url(#clip0_386_596)">
     <path d="M10.966 21.932C17.0224 21.932 21.932 17.0224 21.932 10.966C21.932 4.90966 17.0224 0 10.966 0C4.90966 0 0 4.90966 0 10.966C0 17.0224 4.90966 21.932 10.966 21.932Z" fill="#42DCC9"/>
@@ -223,75 +218,75 @@ export default function NumberScale({
   </defs>
 </svg>:10}</button> 
   */}
-            {bar ? <PieChart /> : <BarChart />}
-            {/* {!emoji && <button className='btn' style={buttonStylecond}>9</button> } */}
-            {/* {!emoji && <button className='btn' style={buttonStylecond}>10</button> } */}
-            {/* {!emoji && <button className='btn' style={buttonStylecond}>5</button> }  
+          <div className="report__centerbar">{bar && <BarChart />}</div>
+          <div className="report__centerpie">{pie && <PieChart />}</div>
+
+          {/* {!emoji && <button className='btn' style={buttonStylecond}>9</button> } */}
+          {/* {!emoji && <button className='btn' style={buttonStylecond}>10</button> } */}
+          {/* {!emoji && <button className='btn' style={buttonStylecond}>5</button> }  
           {!emoji && <button className='btn' style={buttonStylecond}>6</button> }
           {!emoji && <button className='btn' style={buttonStylecond}>7</button> }
           {!emoji && <button className='btn' style={buttonStylecond}>8</button> }
           {!emoji && <button className='btn' style={buttonStylecond}>9</button> }
           {!emoji && <button className='btn' style={buttonStylecond}>10</button> } */}
-          </div>
-
-          {!customize && setting.useScale && isHovered && (
-            <div
-              className="diplay_hover"
-              style={{ transform: row ? "" : `rotate(270deg)` }}
-            >
-              <button onClick={handleCustomize}>Customize</button>
-            </div>
-          )}
         </div>
-        {!customize && setting.useScale && (
-          <div className="scale_use" onMouseEnter={handleMouseLeave}>
-            <label>Scale Template</label>
-            <div>
-              <button
-                onClick={() =>
-                  setSetting((setting) => ({
-                    ...setting,
-                    emojiScale: emoji,
-                    numberScale: !emoji,
-                    useScale: false,
-                  }))
-                }
-              >
-                use
-              </button>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-              >
-                <path
-                  d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
+
+        {!customize && setting.useScale && isHovered && (
+          <div className="diplay_hover">
+            <button onClick={handleCustomize}>Customize</button>
           </div>
         )}
       </div>
-    </>
+      {!customize && setting.useScale && (
+        <div className="scale_use" onMouseEnter={handleMouseLeave}>
+          <label>Scale Template</label>
+          <div>
+            <button
+              onClick={() => {
+                setIsTitleActive(false);
+                setSetting((setting) => ({
+                  ...setting,
+                  bar: bar,
+                  pie: !bar,
+                  useScale: false,
+                }));
+                setAttributes({ state: { ...state, bar: bar } });
+              }}
+            >
+              use
+            </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

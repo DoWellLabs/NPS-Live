@@ -17,8 +17,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
-/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
-/* harmony import */ var _src_components_templatestyle_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/components/templatestyle.scss */ "./src/components/templatestyle.scss");
+/* harmony import */ var _src_components_templatestyle_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src/components/templatestyle.scss */ "./src/components/templatestyle.scss");
+/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
 
 
 
@@ -80,30 +80,26 @@ function PieChartFrontEnd(_ref) {
     }
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    // onMouseDown={dragMouseDown}
-    style: {
-      width: 450,
-      textAlign: "center"
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     onMouseDown: dragMouseDown,
     className: "framefrontend",
     style: {
+      width: 250,
+      textAlign: "center",
       top: position.top,
       left: position.left,
       cursor: "move"
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "frame__scalefrontend"
-  }, bar ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_4__.Pie, {
+  }, bar ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_4__.Bar, {
     data: data,
     width: 30,
     height: 30
-  }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_4__.Bar, {
+  }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_4__.Pie, {
     data: data,
     width: 30,
     height: 30
-  }))));
+  })));
 }
 
 /***/ }),
@@ -15631,13 +15627,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const divsToUpdate = document.querySelectorAll(".boilerplate-update-me");
+const divsToUpdate = document.querySelectorAll(".scalereport-update");
 divsToUpdate.forEach(div => {
   const data = JSON.parse(div.querySelector("pre").innerText);
   console.log("data from pre class div", data);
   react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_ScaleContext__WEBPACK_IMPORTED_MODULE_5__.ScaleProvider, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(OurComponent, data)), div);
-  div.classList.remove("boilerplate-update-me");
-  div.classList.add("boilerplate-update-front");
+  div.classList.remove("scalereport-update");
+  div.classList.add("scalereport-update-front");
 });
 function OurComponent(_ref) {
   let {

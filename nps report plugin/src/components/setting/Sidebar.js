@@ -5,18 +5,12 @@ import "./sidebar.scss";
 import { ScaleContext } from "../ScaleContext";
 import Configuration from "./Configuration";
 import { DragSwitch } from "react-dragswitch";
-import CustomizePiechart from "../customizePiechart";
-import CustomizeBarchart from "./customizeBarchart";
+import CustomizePieChart from "../customizePiechart";
+import CustomizeBarChart from "../customizeBarChart";
+// import PieChart from '../PieChart';
 import "react-dragswitch/dist/index.css";
-
-export default function Sidebar({
-  row,
-  bar,
-  unlikely,
-  likely,
-  veryLikely,
-  setAttributes,
-}) {
+import BarChart from "../BarChart";
+export default function Sidebar({ bar, setAttributes }) {
   //console.log(scaleContent);
   const [setting, setSetting] = useState(true);
   const { state, dispatch } = useContext(ScaleContext);
@@ -69,7 +63,7 @@ export default function Sidebar({
   return (
     <>
       {sideBar && (
-        <div className="sidebar">
+        <div className="sidebarreport">
           <div className="setting_configure">
             <button
               className="setting_button"
@@ -150,7 +144,7 @@ export default function Sidebar({
         </div>
       )}
       {/* <Scale row={row} emoji={emoji} btnbg={btnbg} btncolr={btncolr} /> */}
-      {bar ? <CustomizePiechart /> : <CustomizeBarchart />}
+      {bar ? <CustomizeBarChart /> : <CustomizePieChart />}
     </>
     // </div>
   );
