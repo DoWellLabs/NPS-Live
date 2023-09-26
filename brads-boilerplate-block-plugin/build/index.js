@@ -31,34 +31,66 @@ const App = _ref => {
   } = _ref;
   const [isCustomize, setIsCustomized] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
   const [scaleContent, setScaleContent] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [isTitleActive, setIsTitleActive] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true);
   const [setting, setSetting] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
     useScale: true,
     emojiScale: true,
     numberScale: true
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_ScaleContext__WEBPACK_IMPORTED_MODULE_4__.ScaleProvider, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_ScaleContext__WEBPACK_IMPORTED_MODULE_4__.ScaleProvider, null, isTitleActive && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "title"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h1", {
+    className: "textcolor"
+  }, "NPS Scale"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "setting"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("input", {
+    className: "textinputed",
+    type: "text",
+    placeholder: "Search Report Template"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "svg-container"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "30",
+    height: "36",
+    viewBox: "0 0 36 36",
+    fill: "none"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("path", {
+    d: "M31.1251 18.0001C31.1251 17.5976 31.1076 17.2126 31.0726 16.8101L34.3276 14.3426C35.0276 13.8176 35.2201 12.8376 34.7826 12.0676L31.5101 6.41512C31.3003 6.04444 30.9609 5.76437 30.5571 5.62871C30.1534 5.49304 29.7137 5.51135 29.3226 5.68012L25.5601 7.27262C24.9126 6.81762 24.2301 6.41512 23.5126 6.08262L23.0051 2.04012C22.9001 1.16512 22.1476 0.500122 21.2726 0.500122H14.7451C13.8526 0.500122 13.1001 1.16512 12.9951 2.04012L12.4876 6.08262C11.7701 6.41512 11.0876 6.81762 10.4401 7.27262L6.67765 5.68012C5.87265 5.33012 4.92765 5.64512 4.49015 6.41512L1.21765 12.0851C0.780146 12.8551 0.972646 13.8176 1.67265 14.3601L4.92765 16.8276C4.8551 17.6135 4.8551 18.4043 4.92765 19.1901L1.67265 21.6576C0.972646 22.1826 0.780146 23.1626 1.21765 23.9326L4.49015 29.5851C4.92765 30.3551 5.87265 30.6701 6.67765 30.3201L10.4401 28.7276C11.0876 29.1826 11.7701 29.5851 12.4876 29.9176L12.9951 33.9601C13.1001 34.8351 13.8526 35.5001 14.7276 35.5001H21.2551C22.1301 35.5001 22.8826 34.8351 22.9876 33.9601L23.4951 29.9176C24.2126 29.5851 24.8951 29.1826 25.5426 28.7276L29.3051 30.3201C30.1101 30.6701 31.0551 30.3551 31.4926 29.5851L34.7651 23.9326C35.2026 23.1626 35.0101 22.2001 34.3101 21.6576L31.0551 19.1901C31.1076 18.7876 31.1251 18.4026 31.1251 18.0001ZM18.0701 24.1251C14.6926 24.1251 11.9451 21.3776 11.9451 18.0001C11.9451 14.6226 14.6926 11.8751 18.0701 11.8751C21.4476 11.8751 24.1951 14.6226 24.1951 18.0001C24.1951 21.3776 21.4476 24.1251 18.0701 24.1251Z",
+    fill: "#9A96B8"
+  }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "browse"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h2", {
+    className: "header"
+  }, "Browse Scale"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
+    className: "paragraph"
+  }, "See All"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "scale_container"
   }, !isCustomize && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, setting.numberScale && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_NumberScale__WEBPACK_IMPORTED_MODULE_3__["default"], {
     row: true,
     emoji: false,
-    btnbg: 'yellow',
-    btncolr: 'red',
+    btnbg: "yellow",
+    btncolr: "red",
     customize: isCustomize,
     setCustomize: setIsCustomized,
     setScale: setScaleContent,
+    setIsTitleActive: setIsTitleActive,
     setting: setting,
     setSetting: setSetting,
-    key: 1
+    key: 1,
+    setAttributes: setAttributes
   }), console.log(setting.numberScale), setting.emojiScale && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_NumberScale__WEBPACK_IMPORTED_MODULE_3__["default"], {
     row: true,
     emoji: true,
-    btnbg: '#42DCC9',
+    btnbg: "#42DCC9",
     customize: isCustomize,
     setCustomize: setIsCustomized,
+    setIsTitleActive: setIsTitleActive,
     setScale: setScaleContent,
     setting: setting,
     setSetting: setSetting,
-    key: 5
+    key: 5,
+    setAttributes: setAttributes
   })), isCustomize && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_components_setting_Sidebar__WEBPACK_IMPORTED_MODULE_5__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     setAttributes: setAttributes
   }, scaleContent))));
@@ -81,6 +113,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ScaleContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ScaleContext */ "./src/components/ScaleContext.js");
+
 
 
 function NumberScale(_ref) {
@@ -93,10 +127,15 @@ function NumberScale(_ref) {
     setCustomize,
     setScale,
     setting,
-    setSetting
+    setSetting,
+    setIsTitleActive,
+    setAttributes
   } = _ref;
   const [isHovered, setIsHovered] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
-
+  const {
+    state,
+    dispatch
+  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_ScaleContext__WEBPACK_IMPORTED_MODULE_2__.ScaleContext);
   // Event handlers for hover
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -112,36 +151,37 @@ function NumberScale(_ref) {
       btnbg,
       btncolr
     });
+    setIsTitleActive(false);
   };
   const buttonStyle = {
-    background: btnbg ? btnbg : 'rgb(142, 216, 142)',
-    color: btncolr ? btncolr : 'white',
-    transform: row ? '' : `rotate(270deg)`
+    background: btnbg ? btnbg : "rgb(142, 216, 142)",
+    color: btncolr ? btncolr : "white",
+    transform: row ? "" : `rotate(270deg)`
 
     // Add other styles here as needed
   };
 
   const buttonStylecond = !emoji ? buttonStyle : {
-    transform: row ? '' : `rotate(270deg)`
+    transform: row ? "" : `rotate(270deg)`
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `frame `,
     style: {
-      background: `${row ? '#E8D6F1' : '#F2D5DD'}`
+      background: `${row ? "#E8D6F1" : "#F2D5DD"}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `frame__scale ${isHovered ? 'hovered' : ''}`,
+    className: `frame__scale ${isHovered ? "hovered" : ""}`,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
     style: {
-      transform: `${row ? '' : 'rotate(90deg)'}`
+      transform: `${row ? "" : "rotate(90deg)"}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "scale_typo"
   }, "How would you rate it?"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "scale__buttons"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -170,7 +210,7 @@ function NumberScale(_ref) {
     height: "21.9355",
     fill: "white"
   })))) : 0), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -203,7 +243,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.306458 -0.000244141)"
   })))) : 1), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -239,7 +279,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.612915 -0.000244141)"
   })))) : 2), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -269,7 +309,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.919312 -0.000244141)"
   })))) : 3), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -299,7 +339,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.225769 -0.000244141)"
   })))) : 4), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -337,7 +377,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.532227 -0.000244141)"
   })))) : 5), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -384,7 +424,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.758057 -0.000244141)"
   })))) : 6), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -414,7 +454,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.0645142 -0.000244141)"
   })))) : 7), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -444,7 +484,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.0645142 -0.000244141)"
   })))) : 8), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -474,7 +514,7 @@ function NumberScale(_ref) {
     fill: "white",
     transform: "translate(0.0645142 -0.000244141)"
   })))) : 9), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: `${emoji ? 'emoji' : 'btn'}`,
+    className: `${emoji ? "emoji" : "btn"}`,
     style: buttonStylecond
   }, emoji ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -531,20 +571,60 @@ function NumberScale(_ref) {
   }, "most likely")), !customize && setting.useScale && isHovered && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "diplay_hover",
     style: {
-      transform: row ? '' : `rotate(270deg)`
+      transform: row ? "" : `rotate(270deg)`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "scale__customize",
     onClick: handleCustomize
   }, "Customize"))), !customize && setting.useScale && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "scale_use",
     onMouseEnter: handleMouseLeave
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Scale Template"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: () => setSetting(setting => ({
-      ...setting,
-      emojiScale: emoji,
-      numberScale: !emoji,
-      useScale: false
-    }))
+    onClick: () => {
+      setIsTitleActive(false);
+      setSetting(setting => ({
+        ...setting,
+        emojiScale: emoji,
+        numberScale: !emoji,
+        useScale: false
+      }));
+      setAttributes({
+        state: {
+          ...state,
+          row: row,
+          emoji: emoji,
+          btnbg: btnbg,
+          btncolr: btncolr
+        }
+      });
+      // setAttributes({
+      //   state: {
+      //     row: row,
+      //     emoji: emoji,
+      //     btnbg: btnbg,
+      //     btncolr: btncolr,
+      //     color: {
+      //       btnColor: "",
+      //       btnBgcolor: "",
+      //       fntColor: "",
+      //       sclColor: "",
+      //       confgrFontColor: "",
+      //     },
+      //     scale: {
+      //       format: "",
+      //       width: "",
+      //       height: "",
+      //       lblLeft: "unlikely",
+      //       lblCenter: "likely",
+      //       lblRight: "most likely",
+      //       sclRangefromA: "",
+      //       sclRangetoB: "",
+      //       title: "Help us improve!",
+      //       question: "How would you rate it?",
+      //     },
+      //   },
+      // });
+    }
   }, "use"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "20",
@@ -1992,34 +2072,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 wp.blocks.registerBlockType("makeupnamespace/make-up-block-name", {
-  title: "Brads Boilerplate Block",
+  title: "nps scale",
   icon: "welcome-learn-more",
   category: "common",
   attributes: {
     state: {
-      scaleOrientation: '',
+      scaleOrientation: "",
       row: true,
       emoji: true,
-      btnbg: '',
-      btncolr: '',
+      btnbg: "",
+      btncolr: "",
       color: {
-        btnColor: '',
-        btnBgcolor: '',
-        fntColor: '',
-        sclColor: '',
-        confgrFontColor: ''
+        btnColor: "",
+        btnBgcolor: "",
+        fntColor: "",
+        sclColor: "",
+        confgrFontColor: ""
       },
       scale: {
-        format: '',
-        width: '',
-        height: '',
-        lblLeft: 'unlikely',
-        lblCenter: 'likely',
-        lblRight: 'most likely',
-        sclRangefromA: '',
-        sclRangetoB: '',
-        title: 'Help us improve!',
-        question: 'How would you rate it?'
+        format: "",
+        width: "",
+        height: "",
+        lblLeft: "unlikely",
+        lblCenter: "likely",
+        lblRight: "most likely",
+        sclRangefromA: "",
+        sclRangetoB: "",
+        title: "Help us improve!",
+        question: "How would you rate it?"
       }
     }
   },

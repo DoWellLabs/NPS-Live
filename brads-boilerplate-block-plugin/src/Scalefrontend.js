@@ -1,9 +1,93 @@
-import { useState, useContext, React } from "react";
+import { useState, useContext, useEffect, React } from "react";
 import { Resizable } from "re-resizable";
+// import { ScaleContext } from "./components/ScaleContext";
+import axios from "axios";
 export default function Scalefrontend({ state_back_end }) {
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [selectedScore, setSelectedScore] = useState(0);
+  // const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Define the data you want to send in the POST request
+        const postData = {
+          username: "HeenaK",
+          orientation: "horizontal",
+          scalecolor: "#8f1e1e",
+          roundcolor: "#938585",
+          fontcolor: "#000000",
+          fomat: "numbers",
+          time: "60",
+          name: "exampleScale",
+          left: "good",
+          right: "best",
+          center: "neutral",
+        };
+
+        // Make the POST request using Axios
+        const response = await axios.post(
+          "https://100035.pythonanywhere.com/api/nps_settings_create/",
+          postData
+        );
+
+        // Handle the successful response here
+        console.log(response.data.success);
+      } catch (error) {
+        // Handle any errors here
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const { state } = state_back_end;
+  console.log(state);
   let { row, emoji, btnbg, btncolr } = state;
+  const clickHandler = () => {
+    setSelectedScore(0);
+    // console.log(selectedScore);
+  };
+  const clickHandler2 = () => {
+    setSelectedScore(1);
+    // console.log(selectedScore);
+  };
+  const clickHandler3 = () => {
+    setSelectedScore(2);
+    // console.log(selectedScore);
+  };
+  const clickHandler4 = () => {
+    setSelectedScore(3);
+    // console.log(selectedScore);
+  };
+  const clickHandler5 = () => {
+    setSelectedScore(4);
+    // console.log(selectedScore);
+  };
+  const clickHandler6 = () => {
+    setSelectedScore(5);
+    // console.log(selectedScore);
+  };
+  const clickHandler7 = () => {
+    setSelectedScore(6);
+    // console.log(selectedScore);
+  };
+  const clickHandler8 = () => {
+    setSelectedScore(7);
+    // console.log(selectedScore);
+  };
+  const clickHandler9 = () => {
+    setSelectedScore(8);
+    // console.log(selectedScore);
+  };
+  const clickHandler10 = () => {
+    setSelectedScore(9);
+    // console.log(selectedScore);
+  };
+  const clickHandler11 = () => {
+    setSelectedScore(10);
+    // console.log(selectedScore);
+  };
+  console.log(selectedScore);
   console.log(state.scaleOrientation);
   const buttonStyle = {
     background: state.color.btnColor
@@ -37,7 +121,7 @@ export default function Scalefrontend({ state_back_end }) {
   const scaleDir = (
     <>
       <div
-        className="scale__buttons"
+        className="scale__button"
         style={{
           flexDirection: `${
             state.scaleOrientation === "vertical" ? "column" : "row"
@@ -45,8 +129,10 @@ export default function Scalefrontend({ state_back_end }) {
           gap: state.scaleOrientation === "vertical" ? "5px" : "",
         }}
       >
+        {/* <h2>|{selectedScore}</h2> */}
         <button
           className={`${emoji ? "emoji" : "btn"}`}
+          onClick={clickHandler}
           style={buttonStylecond}
         >
           {emoji ? (
@@ -89,6 +175,7 @@ export default function Scalefrontend({ state_back_end }) {
         <button
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
+          onClick={clickHandler2}
         >
           {emoji ? (
             <svg
@@ -138,6 +225,7 @@ export default function Scalefrontend({ state_back_end }) {
         <button
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
+          onClick={clickHandler3}
         >
           {emoji ? (
             <svg
@@ -189,6 +277,7 @@ export default function Scalefrontend({ state_back_end }) {
           )}
         </button>
         <button
+          onClick={clickHandler4}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -235,6 +324,7 @@ export default function Scalefrontend({ state_back_end }) {
         </button>
 
         <button
+          onClick={clickHandler5}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -281,6 +371,7 @@ export default function Scalefrontend({ state_back_end }) {
         </button>
 
         <button
+          onClick={clickHandler6}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -337,6 +428,7 @@ export default function Scalefrontend({ state_back_end }) {
         </button>
 
         <button
+          onClick={clickHandler7}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -404,6 +496,7 @@ export default function Scalefrontend({ state_back_end }) {
           )}
         </button>
         <button
+          onClick={clickHandler8}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -449,6 +542,7 @@ export default function Scalefrontend({ state_back_end }) {
           )}
         </button>
         <button
+          onClick={clickHandler9}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -495,6 +589,7 @@ export default function Scalefrontend({ state_back_end }) {
         </button>
 
         <button
+          onClick={clickHandler10}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >
@@ -541,6 +636,7 @@ export default function Scalefrontend({ state_back_end }) {
         </button>
 
         <button
+          onClick={clickHandler11}
           className={`${emoji ? "emoji" : "btn"}`}
           style={buttonStylecond}
         >

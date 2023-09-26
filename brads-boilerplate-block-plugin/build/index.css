@@ -635,10 +635,10 @@
   flex-direction: row;
   justify-content: flex-start;
   padding: 10px;
-  margin: 50px;
   -moz-column-gap: 1px;
        column-gap: 1px;
   row-gap: 1px;
+  margin-left: -30px;
 }
 .scale_container .frame {
   position: relative;
@@ -668,11 +668,9 @@
   border-radius: 20px;
   border-color: rgba(61, 203, 169, 0.13);
   background: rgba(61, 203, 169, 0.13);
-  color: #3DCBA9;
+  color: #3dcba9;
   cursor: pointer;
-  color: #3DCBA9;
-  leading-trim: both;
-  text-edge: cap;
+  color: #3dcba9;
   font-family: FF Nort;
   font-size: 16px;
   font-style: normal;
@@ -689,12 +687,12 @@
   flex-direction: column;
   row-gap: 20px;
   border-radius: 12px;
-  background: #FDFBF5;
+  background: #fdfbf5;
   margin-top: 5px;
   margin-bottom: 30px;
 }
 .scale_container .frame .frame__scale .scale_title {
-  color: #1C2B48;
+  color: #1c2b48;
   text-align: center;
   font-family: Inter;
   font-size: 18.896px;
@@ -724,8 +722,7 @@
   padding-right: 5px;
   justify-content: flex-start;
   align-items: center;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  gap: 10px;
 }
 .scale_container .frame .frame__scale .scale__buttons .emoji {
   width: 17.919px;
@@ -791,6 +788,59 @@
   padding: 10px;
 }
 .scale_container .frame .frame__scale.hovered .diplay_hover button {
+  border: 1px solid green;
+  width: 90px;
+  height: 30px;
+  background-color: green;
+  z-index: 110;
+  cursor: pointer;
+  color: white;
+  opacity: 1;
+  border-radius: 13px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  margin-top: 3px;
+}
+
+.setting {
+  display: flex;
+  gap: 15px;
+}
+
+.svg-container {
+  margin-top: 35px;
+}
+
+.textinputed {
+  height: 5px;
+  border-radius: 15px;
+  margin-top: 40px;
+}
+
+.browse {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paragraph {
+  color: #6e62e5;
+}
+
+.textcolor {
+  color: #6e62e5;
+}
+
+.centerpie {
+  margin-left: 105px;
+}
+
+.scale__customize {
   border: 1px solid green;
   width: 90px;
   height: 30px;
