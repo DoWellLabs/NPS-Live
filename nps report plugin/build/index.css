@@ -655,6 +655,7 @@
        column-gap: 1px;
   row-gap: 1px;
   margin-left: -20px;
+  margin-top: -10px;
 }
 .scalereport_container .framereport {
   position: relative;
@@ -892,6 +893,239 @@
   border-radius: 12px;
   background: #fdfbf5;
   margin-top: -10px;
+}
+.frame__scalefrontend .loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.plugin__container {
+  background: #fff;
+}
+
+.plugin__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rep__svg {
+  margin-top: 25px;
+}
+
+.content {
+  width: 550px;
+  height: 150px;
+  background: #fff;
+  border-radius: 15px;
+  /* border: 2px solid red; */
+}
+
+.plugininput {
+  width: 300px;
+  border-radius: 10px;
+  margin: 30px 30px;
+  /* border: none; */
+}
+
+.color {
+  color: #6e62e5;
+  /* margin-top: -3px; */
+}
+
+.aside {
+  background-color: #fff;
+  /* border-radius: 15px; */
+  width: 200px;
+  height: 100vh;
+  /* border: 2px solid red; */
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.style {
+  display: grid;
+  grid-template-columns: 2fr 7fr;
+}
+
+.section {
+  padding: 50px 50px;
+}
+
+.container {
+  background: #f9f9f4;
+}
+
+.paragraph4 {
+  padding: 6px 30px;
+  /* display: none; */
+  font-size: 14px;
+  color: black;
+}
+
+.paragraph1 {
+  padding: 15px 30px;
+  font-size: 14px;
+}
+
+.btnn {
+  background-color: #6e62e5;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 15px;
+  border: none;
+  margin-top: 30px;
+  margin-left: 7.5px;
+}
+
+.svg {
+  margin-bottom: -4px;
+}
+
+.svgg {
+  margin-bottom: -4px;
+}
+
+.spann {
+  margin-top: 1px;
+  font-size: 15px;
+}
+
+.spanns {
+  color: #6e62e5;
+  margin-top: 1px;
+  font-size: 15px;
+}
+
+.spann1 {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.spanns1 {
+  color: #6e62e5;
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.spann2 {
+  margin-top: -1px;
+  font-size: 15px;
+}
+
+.spanns2 {
+  color: #6e62e5;
+  margin-top: -1px;
+  font-size: 15px;
+}
+
+.spann3 {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.spanns3 {
+  color: #6e62e5;
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.pluginspan {
+  padding: 55px 45px;
+}
+
+.pluginbtn {
+  background-color: green;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 15px;
+  border: none;
+  /* margin-top: 40px; */
+  margin-left: 60px;
+  margin-top: -6000px;
+}
+
+.aboutplugin {
+  margin-top: 5px;
+  padding: 5px 20px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  /* display: flex;
+      gap: 5px; */
+  /* display: flex;
+      gap: 5px;
+      padding: 5px 80px;
+      margin-top: 20px;
+      cursor: pointer;
+      /* border: 1px solid red; */
+  /* background-color: #6e62e5; */
+  /* background-color: #f0f0f0;  */
+}
+
+.selectedaboutplugin {
+  margin-top: 10px;
+  padding: 5px 20px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  /* display: flex;
+      gap: 5px; */
+  /* display: flex;
+      gap: 5px;
+      padding: 5px 80px;
+      margin-top: 20px;
+      cursor: pointer; */
+  /* border: 1px solid red; */
+  /* background-color: #6e62e5; */
+  background-color: #f0f0f0;
+  /* font-weight: 600; */
+  /* font-style: bold; */
+}
+
+.about {
+  margin-top: 20px;
+  padding: 5px 20px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  /* gap: 5px; */
+  /* display: flex; */
+  /* gap: 5px;
+      padding: 5px 83px;
+      margin-top: 20px;
+      cursor: pointer; */
+}
+
+.selectedabout {
+  margin-top: 20px;
+  padding: 5px 20px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  /* display: flex;
+      gap: 5px;
+      padding: 5px 83px;
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: #f0f0f0; */
+  /* font-weight: bold; */
 }
 /*!**************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/react-dragswitch/dist/index.css ***!
