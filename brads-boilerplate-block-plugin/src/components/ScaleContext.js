@@ -1,20 +1,41 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from "react";
 
 // Initial state for the counter
-const initialState = { scaleOrientation: '', 
-color: {btnColor:'',btnBgcolor:'', fntColor:'', sclColor:'',confgrFontColor:''},
-scale:{format:'',width:'',height:'',lblLeft:'unlikely',lblCenter:'likely',lblRight:'most likely',sclRangefromA:'',sclRangetoB:'',title:'Help us improve!',question:'How would you rate it?'}
+const initialState = {
+  scaleOrientation: "horizontal",
+  
+  color: {
+    btnColor: "#FFFF00",
+    btnBgcolor: "",
+    fntColor: "#ff0000",
+    sclColor: "#FFFFFF",
+    confgrFontColor: "",
+    
+  },
+  scale: {
+    format: "",
+    width: "",
+    height: "",
+    lblLeft: "unlikely",
+    lblCenter: "likely",
+    lblRight: "most likely",
+    sclRangefromA: "",
+    sclRangetoB: "",
+    title: "Help us improve!",
+    question: "How would you rate it?",
+    blockData: "434"
+  },
 };
 
 // Reducer function
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_SCALE_ORIENTATION':
+    case "SET_SCALE_ORIENTATION":
       return {
         ...state,
         scaleOrientaion: action.payload,
       };
-    case 'SET_BTN_COLOR':
+    case "SET_BTN_COLOR":
       return {
         ...state,
         color: {
@@ -22,7 +43,7 @@ const reducer = (state, action) => {
           btnColor: action.payload,
         },
       };
-      case 'SET_CONFGR_FONT_COLOR':
+    case "SET_CONFGR_FONT_COLOR":
       return {
         ...state,
         color: {
@@ -30,7 +51,7 @@ const reducer = (state, action) => {
           confgrFontColor: action.payload,
         },
       };
-    case 'SET_BTN_BG_COLOR':
+    case "SET_BTN_BG_COLOR":
       return {
         ...state,
         color: {
@@ -38,7 +59,7 @@ const reducer = (state, action) => {
           btnBgcolor: action.payload,
         },
       };
-    case 'SET_FONT_COLOR':
+    case "SET_FONT_COLOR":
       return {
         ...state,
         color: {
@@ -46,7 +67,7 @@ const reducer = (state, action) => {
           fntColor: action.payload,
         },
       };
-    case 'SET_SCALE_COLOR':
+    case "SET_SCALE_COLOR":
       return {
         ...state,
         color: {
@@ -54,7 +75,7 @@ const reducer = (state, action) => {
           sclColor: action.payload,
         },
       };
-    case 'SET_SCALE_FORMAT':
+    case "SET_SCALE_FORMAT":
       return {
         ...state,
         scale: {
@@ -62,7 +83,7 @@ const reducer = (state, action) => {
           format: action.payload,
         },
       };
-    case 'SET_SCALE_DIMENSIONS':
+    case "SET_SCALE_DIMENSIONS":
       return {
         ...state,
         scale: {
@@ -71,7 +92,7 @@ const reducer = (state, action) => {
           height: action.payload.height,
         },
       };
-    case 'SET_LABELS':
+    case "SET_LABELS":
       return {
         ...state,
         scale: {
@@ -82,16 +103,26 @@ const reducer = (state, action) => {
         },
       };
 
-      case 'SET_CONFIGURE_TITLE_QUESTION':
-        return {
-          ...state,
-          scale: {
-            ...state.scale,
-            title: action.payload.title,
-            question: action.payload.question,
-          },
-        };
-    case 'SET_SCALE_RANGE':
+    case "SET_CONFIGURE_TITLE_QUESTION":
+      return {
+        ...state,
+        scale: {
+          ...state.scale,
+          title: action.payload.title,
+          question: action.payload.question,
+        },
+      };
+
+      case"SET_BLOCK_ID":
+      return {
+      ...state,
+      scale:{
+        ...state.scale,
+        blockData:action.payload.scale.blockData
+      }
+
+      }
+    case "SET_SCALE_RANGE":
       return {
         ...state,
         scale: {
@@ -101,12 +132,11 @@ const reducer = (state, action) => {
         },
       };
     default:
-      return {...action.payload};
+      return { ...action.payload };
   }
 };
 
 export default reducer;
-
 
 // Create the context
 const ScaleContext = createContext();

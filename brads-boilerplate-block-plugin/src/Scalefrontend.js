@@ -1,94 +1,317 @@
 import { useState, useContext, useEffect, React } from "react";
 import { Resizable } from "re-resizable";
-// import { ScaleContext } from "./components/ScaleContext";
 import axios from "axios";
+// import { ScaleContext } from "./components/ScaleContext";
+
 export default function Scalefrontend({ state_back_end }) {
   const [position, setPosition] = useState({ top: 0, left: 0 });
-  const [selectedScore, setSelectedScore] = useState(0);
-  // const [data, setData] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Define the data you want to send in the POST request
-        const postData = {
-          username: "HeenaK",
-          orientation: "horizontal",
-          scalecolor: "#8f1e1e",
-          roundcolor: "#938585",
-          fontcolor: "#000000",
-          fomat: "numbers",
-          time: "60",
-          name: "exampleScale",
-          left: "good",
-          right: "best",
-          center: "neutral",
-        };
+  const [selectedScore, setSelectedScore] = useState({ value: null });
+  const [scaleId, setScaleId] = useState(null);
+  // const [randomInstanceId, setRandomInstanceId] = useState(null);
+  // const [previousInstanceIds, setPreviousInstanceIds] = useState([1]);
 
-        // Make the POST request using Axios
-        const response = await axios.post(
-          "https://100035.pythonanywhere.com/api/nps_settings_create/",
-          postData
-        );
-
-        // Handle the successful response here
-        console.log(response.data.success);
-      } catch (error) {
-        // Handle any errors here
-        console.error("Error:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
   const { state } = state_back_end;
-  console.log(state);
-  let { row, emoji, btnbg, btncolr } = state;
+
+  // Page id generated for each page the scale is embedded on
+  const pageId = myDataObject.data;
+  console.log(pageId);
+
+  let {
+    row,
+    emoji,
+    btnbg,
+    btncolr,
+    scale: { blockData },
+    scaleOrientaion,
+    color,
+    scale,
+  } = state;
+  console.log("block is :", blockData);
+
+  // function generating random username
+  function generateRandomUsername(length) {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let username = "";
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      username += characters.charAt(randomIndex);
+    }
+
+    return username;
+  }
+
+  // Usage: Generate a random username with a specified length (e.g., 8 characters)
+  const randomUsername = generateRandomUsername(8);
+
+  // fetching scale id from api after creating the scale
+  const fetchScaleId = async () => {
+    try {
+      const resp = await axios.get(
+        `https://100035.pythonanywhere.com/api/plugins/?scale_type=nps&type=settings&api_key=1b834e07-c68b-4bf6-96dd-ab7cdc62f07f&block_id=${blockData}`
+      );
+
+      setScaleId(resp.data.scale_id);
+      console.log(resp.data.scale_id, "scaleid");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  // updating the pageid for the scale created already
+  const updateScale = async () => {
+    // if (scaleId === null) return;
+    try {
+      const updateScaleData = {
+        scale_id: scaleId,
+        username: randomUsername,
+        orientation: scaleOrientaion,
+        scalecolor: color.sclColor,
+        roundcolor: color.btnColor,
+        fontcolor: color.fntColor,
+        no_of_scales: 10000000,
+        fomat: "numbers",
+        time: "60",
+        name: "scaleplugin ",
+        left: scale.lblLeft,
+        right: scale.lblRight,
+        center: scale.lblCenter,
+        user: "yes",
+        show_total_score: "true",
+        scale_category: "npsScale",
+        text: "good+neutral+best",
+        position: [{ page: +pageId, block: blockData }],
+      };
+
+      const updateResponse = await axios.put(
+        "https://100035.pythonanywhere.com/api/plugins/?scale_type=nps&type=settings&api_key=1b834e07-c68b-4bf6-96dd-ab7cdc62f07f",
+        updateScaleData
+      );
+      console.log(updateResponse);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  // using useeffect to call the function  to fetch the scale id as the compound mounts
+  useEffect(() => {
+    fetchScaleId();
+  }, []);
+
+  // using useeffect to call the function to update the page id for the scale already created
+  useEffect(() => {
+    if (scaleId) {
+      updateScale();
+    }
+  }, [scaleId]);
+
+  //retriving the previous instance id from the api using this previous instand id function
+  // function previousInstanceId() {
+  //   axios
+  //     .get(
+  //       `https://100035.pythonanywhere.com/api/plugins/?api_key=bd6f0fae-5ec7-42f9-bd1a-31e2e53d687b&scale_type=nps&type=response&scale_id=${scaleId}`
+  //     )
+
+  //     .then((response) => {
+  //       setPreviousInstanceIds(response.data.instance_ids); // Assuming the response contains an array of instance IDs
+  //       // console.log(response.data.instance_ids);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // }
+
+  // using useefect to call the previousinstanceid as long as the scale id is availabble after rendering
+  // useEffect(() => {
+  //   console.log("scaleid :", scaleId);
+  //   if (scaleId) {
+  //     previousInstanceId();
+  //   }
+  // }, [scaleId, selectedScore]);
+
+  //for testing  if the previous instanceid is update
+  // useEffect(() => {
+  //   console.log("previousinstanceid :", previousInstanceIds);
+  // }, [previousInstanceIds]);
+
+  // // Generate a random instance ID
+  // const handleGenerateRandomInstanceId = () => {
+  //   const newRandomInstanceId = randomId();
+
+  //   if (previousInstanceIds.includes(newRandomInstanceId)) {
+  //     // Random instance ID already exists, generate another
+  //     handleGenerateRandomInstanceId();
+  //   } else {
+  //     // Use the current random instance ID to make a POST request
+  //     setRandomInstanceId(newRandomInstanceId);
+
+  //     // Call the function to make the POST request with the current instance ID
+  //     // makePostRequest(newRandomInstanceId);
+  //   }
+  // };
+
+  // sending user feedback to the api using post request
+  // const updateUserFeedback = async () => {
+  //   try {
+  //     const userPayLoad = {
+  //       scale_id: scaleId,
+  //       instance_id: randomInstanceId,
+  //       score: selectedScore,
+  //       username: randomUsername,
+  //       position_data: { page_id: pageId, block_id: blockData },
+  //     };
+  //     console.log(userPayLoad);
+  //     const feedbackresp = await axios.post(
+  //       `https://100035.pythonanywhere.com/api/plugins/?api_key=bd6f0fae-5ec7-42f9-bd1a-31e2e53d687b&scale_type=nps&type=response`,
+  //       userPayLoad
+  //     );
+  //     console.log(feedbackresp);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
+
+  // using useeffect to call the handleGenerateRandomInstanceId() when a user click on the button
+  // useEffect(() => {
+  //   if (scaleId) {
+  //     // handleGenerateRandomInstanceId();
+  //   }
+  // }, [selectedScore]);
+
+  // using useeffect to call the updateUserFeedback() after clickin the button and the randominstace id is available
+  // useEffect(() => {
+  //   if (randomInstanceId) {
+  //     // updateUserFeedback();
+  //   }
+  // }, [randomInstanceId]);
+  //
+
+  // function to random number for instance id and checking mate=ing it to be sure it hasnt been used previously
+  function randomId() {
+    const randomNumber = Math.trunc(Math.random() * 10000000) + 1;
+    return randomNumber;
+  }
+
+  const getUniqueID = async () => {
+    let idUsed = true;
+    let idGenerated;
+
+    const { instance_ids } = (
+      await axios.get(
+        `https://100035.pythonanywhere.com/api/plugins/?api_key=1b834e07-c68b-4bf6-96dd-ab7cdc62f07f&scale_type=nps&type=response&scale_id=${scaleId}`
+      )
+    ).data;
+    console.log(instance_ids);
+    while (idUsed) {
+      idGenerated = randomId();
+      // const { instance_ids } = (
+      //   await axios.get(
+      //     `https://100035.pythonanywhere.com/api/plugins/?api_key=bd6f0fae-5ec7-42f9-bd1a-31e2e53d687b&scale_type=nps&type=response&scale_id=${scaleId}`
+      //   )
+      // ).data;
+
+      const idAlreadyUsed = instance_ids.find((id) => id === idGenerated);
+      console.log(idAlreadyUsed);
+      if (!idAlreadyUsed) {
+        idUsed = false;
+      }
+    }
+
+    return idGenerated;
+  };
+
+  // sending the user response to the api  by making a post request
+  const userResponse = async () => {
+    console.log(typeof selectedScore.value);
+    const derivedScore = +selectedScore.value;
+    getUniqueID()
+      .then(async (res) => {
+        const userResponseFeedbacks = {
+          scale_id: scaleId,
+          instance_id: res,
+          username: randomUsername,
+          score: parseInt(selectedScore.value),
+          position_data: { page_id: pageId, block_id: blockData },
+        };
+        console.log(userResponseFeedbacks);
+        try {
+          const userResponseFeedback = {
+            scale_id: scaleId,
+            instance_id: res,
+            score: derivedScore,
+            username: randomUsername,
+            position_data: { page_id: pageId, block_id: blockData },
+          };
+          const feedbackResponse = await axios.post(
+            `https://100035.pythonanywhere.com/api/plugins/?api_key=1b834e07-c68b-4bf6-96dd-ab7cdc62f07f&scale_type=nps&type=response`,
+            userResponseFeedback
+          );
+          console.log(feedbackResponse);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  // using useeffect to call the updateresponse function when the component mounts
+  useEffect(() => {
+    if (scaleId && selectedScore) {
+      userResponse();
+    }
+  }, [selectedScore]);
+
+  // handling click event  when you click on  the button
+
   const clickHandler = () => {
-    setSelectedScore(0);
-    // console.log(selectedScore);
+    setSelectedScore({ value: 0 });
+    console.log("clicked");
   };
   const clickHandler2 = () => {
-    setSelectedScore(1);
+    setSelectedScore({ value: 1 });
     // console.log(selectedScore);
   };
   const clickHandler3 = () => {
-    setSelectedScore(2);
+    setSelectedScore({ value: 2 });
     // console.log(selectedScore);
   };
   const clickHandler4 = () => {
-    setSelectedScore(3);
+    setSelectedScore({ value: 3 });
     // console.log(selectedScore);
   };
   const clickHandler5 = () => {
-    setSelectedScore(4);
+    setSelectedScore({ value: 4 });
     // console.log(selectedScore);
   };
   const clickHandler6 = () => {
-    setSelectedScore(5);
+    setSelectedScore({ value: 5 });
     // console.log(selectedScore);
   };
   const clickHandler7 = () => {
-    setSelectedScore(6);
+    setSelectedScore({ value: 6 });
     // console.log(selectedScore);
   };
   const clickHandler8 = () => {
-    setSelectedScore(7);
+    setSelectedScore({ value: 7 });
     // console.log(selectedScore);
   };
   const clickHandler9 = () => {
-    setSelectedScore(8);
+    setSelectedScore({ value: 8 });
     // console.log(selectedScore);
   };
   const clickHandler10 = () => {
-    setSelectedScore(9);
+    setSelectedScore({ value: 9 });
     // console.log(selectedScore);
   };
   const clickHandler11 = () => {
-    setSelectedScore(10);
+    setSelectedScore({ value: 10 });
     // console.log(selectedScore);
   };
-  console.log(selectedScore);
-  console.log(state.scaleOrientation);
+  // console.log(selectedScore);
+  // console.log(state.scaleOrientation);
   const buttonStyle = {
     background: state.color.btnColor
       ? state.color.btnColor
@@ -109,7 +332,7 @@ export default function Scalefrontend({ state_back_end }) {
     : btnbg
     ? btnbg
     : "rgb(142, 216, 142)";
-  console.log(emoji);
+  // console.log(emoji);
   emoji =
     state.scale.format === "emoji"
       ? true
@@ -129,7 +352,7 @@ export default function Scalefrontend({ state_back_end }) {
           gap: state.scaleOrientation === "vertical" ? "5px" : "",
         }}
       >
-        {/* <h2>|{selectedScore}</h2> */}
+        {/* <h2>{selectedScore}</h2> */}
         <button
           className={`${emoji ? "emoji" : "btn"}`}
           onClick={clickHandler}
